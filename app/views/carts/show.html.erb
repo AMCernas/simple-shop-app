@@ -1,0 +1,43 @@
+<div>
+  <h1>Your Cart</h1>
+
+  <div class="m-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Image</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart.cart_items.each do |item| %>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td><%= image_tag item.product.image, alt: 'Imagen del producto', width: '100', height: '100' %></td>
+            <td><%= item.quantity %></td>
+            <td><%= number_to_currency(item.product.price) %></td>
+            <td><%= number_to_currency(item.total_price) %></td>
+            <td><%= link_to 'Remove', cart_item_path(item), data: {turbo_method: :delete}, class: 'btn btn-danger m-2' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Total</td>
+          <td colspan="2"><%= number_to_currency(@cart.total_price) %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <%= link_to '< Continue Shopping', products_path,  class: 'btn btn-secondary m-2' %>
+    <%= link_to 'Empty Cart', cart_path, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-danger m-2' %>
+  </div>
+
+</div>
+

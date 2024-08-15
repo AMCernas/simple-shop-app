@@ -1,0 +1,41 @@
+<div class="form-product-container">
+  <%= form_with(model: [:admin, @product], local: true) do |form| %>
+    <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+        <ul>
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :image %>
+      <%= form.file_field :image, class: 'form-control-file' %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+
+    <div class="field form-group">
+      <%= form.label :price %>
+      <%= form.number_field :price, step: 0.01, class: 'form-control' %>
+    </div>
+
+    <div class="actions d-flex justify-content-center ">
+      <%= button_tag "Guardar Producto", class: "btn btn-secondary m-2", type: "submit" %>
+    </div>
+
+  <% end %>
+
+</div>

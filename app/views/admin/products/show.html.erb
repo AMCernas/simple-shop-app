@@ -1,0 +1,11 @@
+<div class="actions d-flex justify-content-center ">
+<div>
+    <h4>Product:</h4>
+    <p><%= @product.name %></p>
+    <h4>Image:</h4>
+    <%= image_tag @product.image, alt: 'Imagen del producto', height: '200' %>    <h4>Description:</h4>
+    <p><%= @product.description %></p>
+    <h4>Price:</h4>
+    <p><%= @product.price %></p>
+    </div>
+</div>
